@@ -2,3 +2,4 @@ cypress/videos/
 cypress/screenshots/
 cypress.env.json
 .env
+node_modules/

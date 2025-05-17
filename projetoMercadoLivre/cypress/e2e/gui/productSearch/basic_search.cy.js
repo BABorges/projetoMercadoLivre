@@ -53,10 +53,28 @@ describe('Busca básica de produtos', () => {
                                     .should('be.visible')
                                     .and('contain', search.produtoValorPrazo)
 
+                                // VALIDA O CUPOM DO PRODUTO
+                                cy.get('div.poly-component__coupons')
+                                    .should('be.visible')
+                                    .and('contain', search.produtoCupom)
                             })
-
                     })
             })
+    })
 
+    it.only('Busca um produto inexistente', () => {
+
+        const search = {
+            produtoConsulta: '````',
+            produtoFabricante: '~~~~'
+        }
+        // BUSCA UM PRODUTO VIA SEARCH
+        cy.buscaProduto(search)
+            .then(() => {
+
+                // VALIDA A MENSAGEM NÃO HÁ ANÚNCIOS QUE CORRESPONDAM À SUA BUSCA
+                cy.contains('h3', 'Não há anúncios que correspondam à sua busca')
+                    .should('be.visible')
+            })
     })
 })

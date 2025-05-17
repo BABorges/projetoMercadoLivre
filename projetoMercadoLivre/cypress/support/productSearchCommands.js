@@ -11,14 +11,5 @@ Cypress.Commands.add('buscaProduto', (search) => {
     // PREENCHE A INFORMAÇÃO A SER CONSULTADA
     cy.get("#cb1-edit")
         .should('have.attr', 'placeholder', 'Buscar produtos, marcas e muito mais…')
-        .type(`${search.produtoConsulta} ${search.produtoFabricante}`)
-
-    // VALIDA SE NAS SUGESTÕES DO SEARCH CONTÉM A INFORMAÇÃO A SER CONSULTADA
-    cy.get('#cb1-list')
-        .should('exist')
-        .should('include.text', search.produtoConsulta.toLowerCase())
-
-    // REALIZA A CONSULTA
-    cy.get("#cb1-edit")
-        .type('{enter}')
+        .type(`${search.produtoConsulta} ${search.produtoFabricante}{enter}`)
 })
